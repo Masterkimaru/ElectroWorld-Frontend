@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bright-red: #e73e37;
+  --deep-blue: #1e2780;
+  --medium-purple: #6b61ba;
+  --light-gray: #ceccc6;
+  --charcoal: #4c4d52;
+  --cool-gray: #9799a6;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  background-color: var(--light-gray);
+  color: var(--charcoal);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}

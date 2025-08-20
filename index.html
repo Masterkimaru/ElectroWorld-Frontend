@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Update favicon to your ElectroWorld logo -->
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ElectroWorld</title>
+
+    <style>
+      /* Preloader Styles */
+      #preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: #1e2780; /* Dark blue background */
+        display: flex;
+        align-items: center; /* Center vertically */
+        justify-content: center; /* Center horizontally */
+        z-index: 9999;
+        transition: opacity 0.6s ease;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      /* Container for spinner and logo side by side */
+      .preloader-content {
+        display: flex;
+        flex-direction: column; /* stack logo above spinner */
+        align-items: center;
+        gap: 20px; /* adjust spacing between logo and spinner */
+        opacity: 0;
+        animation: fadeIn 1.2s ease-in-out forwards;
+      }
+
+      .spinner {
+        width: 60px;
+        height: 60px;
+        border: 6px solid rgba(255, 255, 255, 0.3);
+        border-top: 6px solid #e73e37; /* Red spinning border */
+        border-radius: 50%;
+        animation: spin 1.2s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .logo {
+        width: 180px;
+        height: auto;
+        border-radius: 50%; /* Makes the image perfectly round */
+        filter: drop-shadow(0 0 10px rgba(231, 62, 55, 0.8));
+        animation: pulse 2s ease-in-out infinite;
+      }
+
+      @keyframes pulse {
+        0%, 100% {
+          filter: drop-shadow(0 0 10px #e73e37) drop-shadow(0 0 20px #e73e37);
+        }
+        50% {
+          filter: drop-shadow(0 0 20px #ff7b72) drop-shadow(0 0 30px #ff7b72);
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- FANCY Preloader -->
+    <div id="preloader">
+      <div class="preloader-content">
+        <img src="/logo.png" alt="ElectroWorld Logo" class="logo" />
+        <div class="spinner"></div>        
+      </div>
+    </div>
+
+    <!-- React App Root -->
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+
+    <!-- Hide Preloader After Load -->
+    <script>
+      const preloader = document.getElementById('preloader');
+      const startTime = Date.now();
+
+      window.addEventListener('load', () => {
+        const timeElapsed = Date.now() - startTime;
+        const delay = Math.max(3000 - timeElapsed, 0); // Ensure minimum 3 seconds
+
+        setTimeout(() => {
+          if (preloader) {
+            preloader.style.opacity = '0';
+            setTimeout(() => preloader.remove(), 600); // Remove after fade-out
+          }
+        }, delay);
+      });
+    </script>
+  </body>
+</html>
