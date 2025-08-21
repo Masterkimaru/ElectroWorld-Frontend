@@ -716,7 +716,7 @@
 .category-nav-buttons {
   display: flex;
   justify-content: center;
-  gap: 15px;
+  gap: 10px;
   flex-wrap: wrap;
 }
 
@@ -891,6 +891,39 @@
   .nav-title {
     font-size: 1.1rem;
   }
+    .header-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+  }
+  
+  .delivery-selector label {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .delivery-selector select {
+    width: 100%;
+  }
+  
+  .cart-toggle {
+    justify-content: center;
+    width: 100%;
+  }
+    .category-nav-btn {
+    min-width: 120px;
+    padding: 10px 12px;
+    flex: 1 0 calc(25% - 10px); /* Two items per row with gap */
+  }
+  
+  .category-name {
+    font-size: 0.85rem;
+  }
+  
+  .category-count {
+    font-size: 0.75rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -958,20 +991,25 @@
     font-size: 1rem;
   }
 
-  .category-nav-buttons {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
   .category-nav-btn {
+    flex: 1 0 calc(50% - 10px); /* Two items per row with gap */
     min-width: auto;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 12px 15px;
+    max-width: calc(50% - 10px); /* Ensure they don't exceed half width */
   }
-
+  
+  .category-nav-buttons {
+    gap: 10px; /* Ensure proper spacing between items */
+  }
+  
   .category-name {
-    margin-bottom: 0;
+    font-size: 0.8rem; /* Slightly smaller text to fit */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .category-count {
+    font-size: 0.7rem; /* Smaller count text */
   }
 }
 

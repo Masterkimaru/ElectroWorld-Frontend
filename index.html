@@ -2,7 +2,6 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <!-- Update favicon to your ElectroWorld logo -->
     <link rel="icon" type="image/png" href="/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ElectroWorld</title>
@@ -79,6 +78,85 @@
           transform: translateY(0);
         }
       }
+      
+      /* New styles for the credit text */
+      .credit {
+        margin-top: 10px;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 14px;
+        letter-spacing: 1px;
+        position: relative;
+        opacity: 0;
+        animation: textReveal 2s ease-in-out forwards;
+        animation-delay: 1.5s;
+      }
+      
+      .credit span {
+        display: inline-block;
+        position: relative;
+      }
+      
+      .credit .powered {
+        color: #ffffff;
+        font-weight: 300;
+        margin-right: 4px;
+      }
+      
+      .credit .by {
+        color: rgba(255, 255, 255, 0.7);
+        font-style: italic;
+        margin-right: 4px;
+      }
+      
+      .credit .name {
+        color: #ffcc00;
+        font-weight: bold;
+        text-shadow: 0 0 8px rgba(255, 204, 0, 0.6);
+        position: relative;
+      }
+      
+      .credit .name::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #ffcc00, transparent);
+        animation: underlineFlow 3s ease-in-out infinite;
+      }
+      
+      @keyframes textReveal {
+        0% {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      
+      @keyframes underlineFlow {
+        0% {
+          transform: translateX(-100%);
+        }
+        50% {
+          transform: translateX(100%);
+        }
+        100% {
+          transform: translateX(100%);
+        }
+      }
+      
+      @keyframes glowPulse {
+        0%, 100% {
+          text-shadow: 0 0 5px rgba(255, 204, 0, 0.7);
+        }
+        50% {
+          text-shadow: 0 0 15px rgba(255, 204, 0, 0.9), 0 0 25px rgba(255, 204, 0, 0.6);
+        }
+      }
     </style>
   </head>
   <body>
@@ -86,7 +164,12 @@
     <div id="preloader">
       <div class="preloader-content">
         <img src="/logo.png" alt="ElectroWorld Logo" class="logo" />
-        <div class="spinner"></div>        
+        <div class="spinner"></div>
+        <div class="credit">
+          <span class="powered">Powered</span>
+          <span class="by">by</span>
+          <span class="name">MasterKimaru</span>
+        </div>
       </div>
     </div>
 
@@ -109,6 +192,19 @@
             setTimeout(() => preloader.remove(), 600); // Remove after fade-out
           }
         }, delay);
+      });
+      
+      // Add additional animation to the name
+      document.addEventListener('DOMContentLoaded', () => {
+        const nameElement = document.querySelector('.credit .name');
+        
+        // Add intermittent glow effect
+        setInterval(() => {
+          nameElement.style.animation = 'glowPulse 1.5s ease-in-out';
+          setTimeout(() => {
+            nameElement.style.animation = '';
+          }, 1500);
+        }, 5000);
       });
     </script>
   </body>
