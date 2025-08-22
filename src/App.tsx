@@ -1,5 +1,6 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
+import { Analytics } from '@vercel/analytics/react';
 import Navbar from './components/Navbar';
 import Repair from './pages/Repair';
 import BuyMerchandise from './pages/BuyMerchandise';
@@ -152,6 +153,7 @@ function App() {
           </Routes>
         </AnimatePresence>
       </main>
+      <Analytics /> 
     </div>
   );
 }
