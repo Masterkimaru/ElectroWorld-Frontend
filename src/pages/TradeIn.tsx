@@ -22,7 +22,7 @@ export default function TradeIn() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
-  const REPAIRER_WHATSAPP = "+254799654737";
+  const REPAIRER_WHATSAPP = "+254706234072";
 
   // Animation on mount
   useEffect(() => {
